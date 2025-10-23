@@ -1,0 +1,162 @@
+<style>
+.upsell_product-card {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--Dark-grey, #737373);
+    background: var(--Basalt, #181818);
+    justify-items: end;
+    gap: 23px;
+    margin-bottom: 10px;
+}
+.upsell_product-card_img img {
+    width: 90px;
+    height: 90px;
+    border-radius: 3.956px;
+}
+.upsell_product-card_infoMain h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #fff;
+}
+.upsell_product-card_infoMain p {
+    color: var(--Mid-Grey, #AEAEAE);
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+}
+.variant-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.variant-btn {
+    padding: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    border: none;
+    outline: none;
+}
+.variant-btn.selected {
+    background: #fff;
+    color: #000;
+}
+.upsellBtn {
+    display: flex;
+    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.20);
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.noVariant {
+    display: none !important;
+}
+</style>
+
+<div class="upsell_featured-collection">
+    <div class="upsell_collection-grid upsell_collection-cart">
+        {%- assign selected_collection = collections[section.settings.collection] -%}
+        {%- for uproduct in selected_collection.products -%}
+        <div class="upsell_product-card">
+            <div class="upsell_product-card_img">
+                <a href="{{ uproduct.url }}" class="upsell_product-image">
+                    <img src="{{ uproduct.featured_image.src | img_url: 'medium' }}" alt="{{ uproduct.title }}">
+                </a>
+            </div>
+            <div class="upsell_product-card_infoMain">
+                <h3 class="upsell_product-title">{{ uproduct.title }}</h3>
+                <div class="Upprice">
+                    <p class="upsell_product-price">{{ uproduct.price | money }}</p>
+                    {% if uproduct.compare_at_price > uproduct.price %}
+                    <p class="upsell_product-compare-price">{{ uproduct.compare_at_price | money }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="variant-btns {% if uproduct.variants.size == 1 %} noVariant{% endif %}" id="variantBtns-{{ uproduct.id }}">
+                    {% for variant in uproduct.variants %}
+                    <button type="button" class="variant-btn {% if forloop.first %}selected{% endif %}" data-variant-id="{{ variant.id }}">
+                        {{ variant.title }} – {{ variant.price | money }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="upsell_product-card_button">
+                {% assign default_variant = uproduct.variants.first %}
+                <button type="button" name="add" id="collection-cart-{{ uproduct.id }}" class="upsellBtn"
+                    data-product-id="{{ uproduct.id }}" data-variant-id="{{ default_variant.id }}">Add +</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).on("click", ".variant-btn", function() {
+    let variantBtnsContainer = $(this).closest(".variant-btns");
+    variantBtnsContainer.find(".variant-btn").removeClass("selected");
+    $(this).addClass("selected");
+});
+
+$(document).on("click", "[id^='collection-cart-']", function() {
+    let productId = $(this).data("product-id");
+    let selectedVariantBtn = $("#variantBtns-" + productId).find(".variant-btn.selected");
+
+    if (selectedVariantBtn.length === 0) {
+        alert("Please select a variant.");
+        return;
+    }
+
+    let variantId = selectedVariantBtn.data("variant-id");
+    let formobj = {
+        quantity: 1,
+        id: variantId
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/cart/add.js",
+        cache: false,
+        data: formobj,
+        dataType: "json",
+        success: function(data) {
+            console.log("Product added to cart:", data);
+            $("#collection-cart-" + productId).text("Added!");
+            updateCartDrawer();
+        },
+        error: function(xhr, ajaxOption, thrownError) {
+            console.error("Error adding product:", thrownError);
+        }
+    });
+});
+
+function updateCartDrawer() {
+    $.ajax({
+        type: "GET",
+        url: "/cart",
+        cache: false,
+        dataType: "html",
+        success: function(data) {
+            $("#CartDrawer-Form").html($(data).find("#CartDrawer-Form").html());
+            $(".drawer").removeClass("is-empty");
+            $(".drawer__inner-empty").hide();
+            $("#cart-icon-bubble").load(location.href + " #cart-icon-bubble");
+        },
+        error: function(xhr, ajaxOption, thrownError) {
+            console.error("Error updating cart drawer:", thrownError);
+        }
+    });
+}
+</script>

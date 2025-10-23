@@ -1,0 +1,447 @@
+{% comment %}
+  sections/hero-section.liquid
+{% endcomment %}
+
+<section class="hero-pp-hero" style="
+  background: linear-gradient(135deg, {{ section.settings.bg_color_1 }} 0%, {{ section.settings.bg_color_2 }} 100%);
+">
+  <div class="hero-pp-hero-container page-width">
+    <div class="hero-pp-hero-content">
+      {% if section.settings.pre_headline != blank %}
+        <p class="hero-pp-pre-headline">{{ section.settings.pre_headline }}</p>
+      {% endif %}
+
+      <h1 class="hero-pp-hero-headline">
+        {% if section.settings.arabic_text != blank %}
+          <div class="hero-pp-bilingual">
+            <span class="hero-pp-arabic-text">{{ section.settings.arabic_text }}</span>
+            <span>{{ section.settings.english_text }}</span>
+          </div>
+        {% endif %}
+        <span class="hero-pp-accent">{{ section.settings.accent_text }}</span>
+      </h1>
+
+      {% if section.settings.subhead != blank %}
+        <div class="hero-pp-hero-subhead">
+          {{ section.settings.subhead }}
+        </div>
+      {% endif %}
+
+      <div class="hero-pp-trust-row">
+        <div class="hero-pp-stars">{{ section.settings.star_rating }}</div>
+        <span class="hero-pp-trust-text">{{ section.settings.rating_text }}</span>
+        <span class="hero-pp-trust-text">•</span>
+        <span class="hero-pp-trust-text">{{ section.settings.ship_date }}</span>
+      </div>
+
+      <div class="hero-pp-cta-buttons">
+        {% if section.settings.primary_cta_text != blank %}
+          <a href="{{ section.settings.primary_cta_link }}" class="hero-pp-btn-primary">
+            {{ section.settings.primary_cta_text }}
+            <span>→</span>
+          </a>
+        {% endif %}
+        {% if section.settings.secondary_cta_text != blank %}
+          <a href="{{ section.settings.secondary_cta_link }}" class="hero-pp-btn-secondary">
+            {{ section.settings.secondary_cta_text }}
+            <span>↓</span>
+          </a>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_urgency %}
+        <div class="hero-pp-urgency-bar">
+          <span>{{ section.settings.urgency_icon }}</span>
+          <span class="hero-pp-urgency-text">{{ section.settings.urgency_text }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="hero-pp-hero-image">
+      {% if section.settings.hero_image != blank %}
+        {{ section.settings.hero_image | image_url: width: 800 | image_tag: class: 'hero-pp-hero-img-tag' }}
+      {% else %}
+        <div class="hero-pp-hero-img-placeholder">
+          {{ section.settings.placeholder_text }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.badge_text != blank %}
+        <div class="hero-pp-badge">{{ section.settings.badge_text }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-pp-hero {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .hero-pp-hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-pp-pre-headline {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    color: #6b6b6b;
+    margin-bottom: 16px;
+  }
+
+  .hero-pp-hero-headline {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .hero-pp-bilingual {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hero-pp-arabic-text {
+    color: #2d5f3f;
+    font-size: 52px;
+  }
+
+  .hero-pp-accent {
+    color: #2d5f3f;
+  }
+
+  .hero-pp-hero-subhead {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 32px;
+  }
+
+  .hero-pp-trust-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-pp-stars {
+    color: #ffa500;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .hero-pp-trust-text {
+    color: #6b6b6b;
+    font-size: 15px;
+  }
+
+  .hero-pp-cta-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* Base button styles - ensures all buttons have same height and padding */
+  .hero-pp-btn-primary,
+  .hero-pp-btn-secondary {
+    padding: 18px 36px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 56px;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .hero-pp-btn-primary {
+    background: #2d5f3f;
+    color: white;
+    border: 2px solid #2d5f3f;
+    box-shadow: 0 4px 16px rgba(45, 95, 63, 0.2);
+  }
+
+  .hero-pp-btn-primary:hover {
+    background: #234a32;
+    border-color: #234a32;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(45, 95, 63, 0.3);
+  }
+
+  .hero-pp-btn-secondary {
+    background: white;
+    color: #2d5f3f;
+    border: 2px solid #2d5f3f;
+  }
+
+  .hero-pp-btn-secondary:hover {
+    background: #f0f7f3;
+  }
+
+  .hero-pp-urgency-bar {
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe9cc 100%);
+    padding: 16px 20px;
+    border-radius: 10px;
+    border-left: 4px solid #ff6b35;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-pp-urgency-text {
+    color: #cc4400;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .hero-pp-hero-image {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  .hero-pp-hero-img-tag,
+  .hero-pp-hero-img-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+  }
+
+  .hero-pp-hero-img-placeholder {
+    background: linear-gradient(135deg, #e5f2e9 0%, #c9e4d3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #6b6b6b;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .hero-pp-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2d5f3f;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 968px) {
+    .hero-pp-hero-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-pp-hero-headline {
+      font-size: 42px;
+    }
+
+    .hero-pp-arabic-text {
+      font-size: 38px;
+    }
+
+    .hero-pp-cta-buttons {
+      flex-direction: column;
+    }
+
+    .hero-pp-btn-primary,
+    .hero-pp-btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background Color 1",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background Color 2",
+      "default": "#f9fdfb"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "pre_headline",
+      "label": "Pre-headline",
+      "default": "For the ones who left, but never let go"
+    },
+    {
+      "type": "text",
+      "id": "arabic_text",
+      "label": "Arabic Text",
+      "default": "فلسطين"
+    },
+    {
+      "type": "text",
+      "id": "english_text",
+      "label": "English Text",
+      "default": "Palestine"
+    },
+    {
+      "type": "text",
+      "id": "accent_text",
+      "label": "Accent Text",
+      "default": "Lives Here Now"
+    },
+    {
+      "type": "richtext",
+      "id": "subhead",
+      "label": "Subheadline",
+      "default": "<p><strong>12 months. 12 artists from Gaza.</strong><br>12 ways to keep home alive in your daily life—<br>while funding real relief.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Trust Elements"
+    },
+    {
+      "type": "text",
+      "id": "star_rating",
+      "label": "Star Rating Display",
+      "default": "★★★★★"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "4.9/5 from 3,847 families"
+    },
+    {
+      "type": "text",
+      "id": "ship_date",
+      "label": "Shipping Date",
+      "default": "Ships December 2025"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "Primary CTA Text",
+      "default": "Reserve Your Calendar — £28"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_link",
+      "label": "Primary CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA Text",
+      "default": "See What's Inside"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_link",
+      "label": "Secondary CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Urgency Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_urgency",
+      "label": "Show Urgency Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "urgency_icon",
+      "label": "Urgency Icon",
+      "default": "🔥"
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Urgency Text",
+      "default": "3,847 of 50,000 sold • Early price ends in 4 days"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder_text",
+      "label": "Placeholder Text (if no image)",
+      "default": "Calendar on Diaspora Family Wall\nNext to photos of Palestine, keys, olive branch"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Limited to 50,000 worldwide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}

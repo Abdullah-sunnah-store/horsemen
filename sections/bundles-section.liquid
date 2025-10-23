@@ -1,0 +1,509 @@
+{% comment %}
+  sections/bundles-section.liquid
+{% endcomment %}
+
+<section class="bundles-pp-bundles" style="
+  background: linear-gradient(180deg, {{ section.settings.bg_color_1 }} 0%, {{ section.settings.bg_color_2 }} 100%);
+">
+  <div class="bundles-pp-bundles-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="bundles-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="bundles-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="bundles-pp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    <div class="bundles-pp-bundle-grid">
+      {% for block in section.blocks %}
+        <div class="bundles-pp-bundle-card {% if block.settings.is_popular %}bundles-pp-popular{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.is_popular %}
+            <div class="bundles-pp-popular-badge">{{ block.settings.popular_text }}</div>
+          {% endif %}
+
+          <h3 class="bundles-pp-bundle-name">{{ block.settings.bundle_name }}</h3>
+          <p class="bundles-pp-bundle-quantity">{{ block.settings.quantity }}</p>
+          <div class="bundles-pp-bundle-price">{{ block.settings.price }}</div>
+
+          {% if block.settings.savings != blank %}
+            <div class="bundles-pp-bundle-savings">{{ block.settings.savings }}</div>
+          {% endif %}
+
+          <div class="bundles-pp-bundle-features">
+            {% if block.settings.feature_1 != blank %}
+              <div class="bundles-pp-bundle-feature">
+                <span>✓</span>
+                <span>{{ block.settings.feature_1 }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.feature_2 != blank %}
+              <div class="bundles-pp-bundle-feature">
+                <span>✓</span>
+                <span>{{ block.settings.feature_2 }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.feature_3 != blank %}
+              <div class="bundles-pp-bundle-feature">
+                <span>✓</span>
+                <span>{{ block.settings.feature_3 }}</span>
+              </div>
+            {% endif %}
+            {% if block.settings.feature_4 != blank %}
+              <div class="bundles-pp-bundle-feature">
+                <span>✓</span>
+                <span>{{ block.settings.feature_4 }}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.use_case != blank %}
+            <div class="bundles-pp-bundle-use-case">{{ block.settings.use_case }}</div>
+          {% endif %}
+
+          {% if block.settings.product != blank %}
+            {% assign product = block.settings.product %}
+            <form action="/cart/add" method="post" class="bundles-pp-bundle-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="bundles-pp-btn-primary bundles-pp-btn-full">
+                {{ block.settings.button_text }}
+              </button>
+            </form>
+          {% else %}
+            <button class="bundles-pp-btn-primary bundles-pp-btn-full">{{ block.settings.button_text }}</button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_guarantee %}
+      <div class="bundles-pp-guarantee-box">
+        <h3 class="bundles-pp-guarantee-title">{{ section.settings.guarantee_title }}</h3>
+        <p class="bundles-pp-guarantee-text">{{ section.settings.guarantee_text }}</p>
+        <p class="bundles-pp-guarantee-details">{{ section.settings.guarantee_details }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .bundles-pp-bundles {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .bundles-pp-bundles-wrapper {
+    text-align: center;
+  }
+
+  .bundles-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .bundles-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .bundles-pp-section-subtitle {
+    font-size: 20px;
+    color: #6b6b6b;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .bundles-pp-bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .bundles-pp-bundle-card {
+    background: white;
+    border: 3px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 40px;
+    transition: all 0.3s;
+    position: relative;
+    text-align: left;
+  }
+
+  .bundles-pp-bundle-card:hover {
+    border-color: #2d5f3f;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(45, 95, 63, 0.15);
+  }
+
+  .bundles-pp-bundle-card.bundles-pp-popular {
+    border-color: #2d5f3f;
+    background: #f9fdfb;
+  }
+
+  .bundles-pp-popular-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d5f3f;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .bundles-pp-bundle-name {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .bundles-pp-bundle-quantity {
+    color: #6b6b6b;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .bundles-pp-bundle-price {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2d5f3f;
+    margin-bottom: 8px;
+  }
+
+  .bundles-pp-bundle-savings {
+    color: #ff6b35;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .bundles-pp-bundle-features {
+    margin-bottom: 32px;
+  }
+
+  .bundles-pp-bundle-feature {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .bundles-pp-bundle-use-case {
+    background: #f0f7f3;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .bundles-pp-bundle-form {
+    margin: 0;
+  }
+
+  .bundles-pp-btn-primary {
+    background: #2d5f3f;
+    color: white;
+    padding: 18px 36px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(45, 95, 63, 0.2);
+    border: none;
+    cursor: pointer;
+  }
+
+  .bundles-pp-btn-primary:hover {
+    background: #234a32;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(45, 95, 63, 0.3);
+  }
+
+  .bundles-pp-btn-full {
+    width: 100%;
+  }
+
+  .bundles-pp-guarantee-box {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #e5f2e9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bundles-pp-guarantee-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .bundles-pp-guarantee-text {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-bottom: 24px;
+  }
+
+  .bundles-pp-guarantee-details {
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+
+  @media (max-width: 968px) {
+    .bundles-pp-section-title {
+      font-size: 32px;
+    }
+
+    .bundles-pp-bundle-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Bundles Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background Color 1",
+      "default": "#f9fdfb"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background Color 2",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Give Palestine. Keep Palestine."
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Choose Your Edition"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "In our culture, we share what we love. Make this your gift this year."
+    },
+    {
+      "type": "header",
+      "content": "Guarantee Box"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guarantee",
+      "label": "Show Guarantee",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "guarantee_title",
+      "label": "Guarantee Title",
+      "default": "30-Day Money-Back Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "guarantee_text",
+      "label": "Guarantee Text",
+      "default": "If you're not absolutely in love with your calendar within 30 days, we'll refund you. No questions asked. You keep the calendar."
+    },
+    {
+      "type": "text",
+      "id": "guarantee_details",
+      "label": "Guarantee Details",
+      "default": "Ships December 2025 • UK/EU/US shipping available • Track your order online"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bundle_name",
+          "label": "Bundle Name",
+          "default": "Standard Edition"
+        },
+        {
+          "type": "text",
+          "id": "quantity",
+          "label": "Quantity Description",
+          "default": "1 Calendar"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "£28"
+        },
+        {
+          "type": "text",
+          "id": "savings",
+          "label": "Savings Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_popular",
+          "label": "Mark as Popular",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "popular_text",
+          "label": "Popular Badge Text",
+          "default": "MOST POPULAR"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "12 original artworks from Gaza"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "Premium 300gsm paper"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "QR codes to 12 stories"
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4",
+          "default": "10% donated to MAP"
+        },
+        {
+          "type": "textarea",
+          "id": "use_case",
+          "label": "Use Case",
+          "default": "Perfect for: Your own home or office"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Add to Cart"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundles Section",
+      "blocks": [
+        {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Standard Edition",
+            "quantity": "1 Calendar",
+            "price": "£28",
+            "feature_1": "12 original artworks from Gaza",
+            "feature_2": "Premium 300gsm paper",
+            "feature_3": "QR codes to 12 stories",
+            "feature_4": "10% donated to MAP",
+            "use_case": "Perfect for: Your own home or office"
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "The Family Set",
+            "quantity": "3 Calendars",
+            "price": "£75",
+            "savings": "Save £9 (12% off)",
+            "is_popular": true,
+            "feature_1": "Everything in Standard",
+            "feature_2": "Free: 3 kufiya bookmarks",
+            "feature_3": "Split shipping option available",
+            "feature_4": "Perfect for gifting family",
+            "use_case": "Perfect for: One for you, two for parents/siblings. Most popular for Eid gifts."
+          }
+        },
+        {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Collector's Edition",
+            "quantity": "1 Calendar + Gold Foil",
+            "price": "£38",
+            "feature_1": "Everything in Standard",
+            "feature_2": "Gold foil accents on titles",
+            "feature_3": "Numbered certificate (Limited to 5,000)",
+            "feature_4": "Premium gift box",
+            "use_case": "Perfect for: Collectors & those who want the premium experience"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,355 @@
+{% comment %}
+  sections/comparison-section.liquid
+{% endcomment %}
+
+<section class="comparison-pp-comparison" style="
+  background: {{ section.settings.bg_color }};
+  border-top: 1px solid {{ section.settings.border_color }};
+  border-bottom: 1px solid {{ section.settings.border_color }};
+">
+  <div class="comparison-pp-comparison-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="comparison-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="comparison-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="comparison-pp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    <div class="comparison-pp-comparison-grid">
+      <div class="comparison-pp-comparison-column comparison-pp-wrong">
+        <div class="comparison-pp-comparison-title">{{ section.settings.wrong_title }}</div>
+        {% for block in section.blocks %}
+          {% if block.type == 'wrong_item' %}
+            <div class="comparison-pp-comparison-item">
+              <span class="comparison-pp-comparison-icon">✗</span>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="comparison-pp-comparison-column comparison-pp-right">
+        <div class="comparison-pp-comparison-title">{{ section.settings.right_title }}</div>
+        {% for block in section.blocks %}
+          {% if block.type == 'right_item' %}
+            <div class="comparison-pp-comparison-item">
+              <span class="comparison-pp-comparison-icon">✓</span>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.show_cta %}
+      <div class="comparison-pp-trust-cta">
+        <p class="comparison-pp-trust-quote">{{ section.settings.cta_quote }}</p>
+        {% if section.settings.cta_text != blank %}
+          <a href="{{ section.settings.cta_link }}" class="comparison-pp-btn-secondary">
+            {{ section.settings.cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .comparison-pp-comparison {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .comparison-pp-comparison-wrapper {
+    text-align: center;
+  }
+
+  .comparison-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .comparison-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .comparison-pp-section-subtitle {
+    font-size: 20px;
+    color: #6b6b6b;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .comparison-pp-comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .comparison-pp-comparison-column {
+    padding: 40px;
+    border-radius: 12px;
+    text-align: left;
+  }
+
+  .comparison-pp-comparison-column.comparison-pp-wrong {
+    background: #fff5f5;
+  }
+
+  .comparison-pp-comparison-column.comparison-pp-right {
+    background: #f0f7f3;
+  }
+
+  .comparison-pp-comparison-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .comparison-pp-comparison-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .comparison-pp-comparison-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .comparison-pp-trust-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #2d5f3f;
+  }
+
+  .comparison-pp-trust-quote {
+    font-size: 18px;
+    color: #2d5f3f;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .comparison-pp-btn-secondary {
+    background: white;
+    color: #2d5f3f;
+    padding: 18px 36px;
+    border: 2px solid #2d5f3f;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .comparison-pp-btn-secondary:hover {
+    background: #f0f7f3;
+  }
+
+  @media (max-width: 968px) {
+    .comparison-pp-comparison-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .comparison-pp-section-title {
+      font-size: 32px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Comparison Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9fdfb"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5f2e9"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Why We're Different"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Not Another \"Awareness\" Product"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "We know you've been burned before. Here's exactly why Project Pal is different."
+    },
+    {
+      "type": "text",
+      "id": "wrong_title",
+      "label": "Wrong Column Title",
+      "default": "❌ Most \"Awareness\" Products"
+    },
+    {
+      "type": "text",
+      "id": "right_title",
+      "label": "Right Column Title",
+      "default": "✓ Project Pal Promise"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Box",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "cta_quote",
+      "label": "CTA Quote",
+      "default": "Made by diaspora, for diaspora. No middlemen. No exploitation. Just art, dignity, and action."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "See This Month's Donation Receipt →"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "wrong_item",
+      "name": "Wrong Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item Text",
+          "default": "\"Awareness\" products that do nothing"
+        }
+      ]
+    },
+    {
+      "type": "right_item",
+      "name": "Right Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item Text",
+          "default": "12 artists from Gaza, paid BEFORE printing"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Section",
+      "blocks": [
+        {
+          "type": "wrong_item",
+          "settings": {
+            "text": "\"Awareness\" products that do nothing"
+          }
+        },
+        {
+          "type": "wrong_item",
+          "settings": {
+            "text": "Designs by people who've never been there"
+          }
+        },
+        {
+          "type": "wrong_item",
+          "settings": {
+            "text": "Vague \"proceeds donated\" with no receipts"
+          }
+        },
+        {
+          "type": "right_item",
+          "settings": {
+            "text": "12 artists from Gaza, paid BEFORE printing"
+          }
+        },
+        {
+          "type": "right_item",
+          "settings": {
+            "text": "10% donated monthly—receipts published here →"
+          }
+        },
+        {
+          "type": "right_item",
+          "settings": {
+            "text": "Premium quality you'll actually display"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

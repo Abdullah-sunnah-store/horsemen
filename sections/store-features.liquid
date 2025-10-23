@@ -1,0 +1,189 @@
+{% schema %}
+{
+  "name": "Store Features",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "feature1_icon",
+      "label": "Feature 1 Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature1_title",
+      "label": "Feature 1 Title",
+      "default": "FREE SHIPPING"
+    },
+    {
+      "type": "text",
+      "id": "feature1_subtitle",
+      "label": "Feature 1 Subtitle",
+      "default": "On order over €150"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature2_icon",
+      "label": "Feature 2 Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature2_title",
+      "label": "Feature 2 Title",
+      "default": "PROMISING QUALITY"
+    },
+    {
+      "type": "text",
+      "id": "feature2_subtitle",
+      "label": "Feature 2 Subtitle",
+      "default": "We directly manufacture."
+    },
+    {
+      "type": "image_picker",
+      "id": "feature3_icon",
+      "label": "Feature 3 Icon"
+    },
+    {
+      "type": "text",
+      "id": "feature3_title",
+      "label": "Feature 3 Title",
+      "default": "30 DAYS RETURN"
+    },
+    {
+      "type": "text",
+      "id": "feature3_subtitle",
+      "label": "Feature 3 Subtitle",
+      "default": "Free return & exchange"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Store Features",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.store-features {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  background: white;
+  padding: 96px 0;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: white;
+  border: 8px solid #f1f1f1;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.feature-text {
+  text-align: left;
+}
+
+.feature-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2d2d2d;
+  letter-spacing: 1px;
+}
+
+.feature-subtitle {
+  font-size: 13px;
+  color: #7a7a7a;
+}
+
+@media (max-width: 768px) {
+  .store-features {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .feature-item {
+    width: 90%;
+    max-width: 400px;
+    justify-content: flex-start;
+  }
+  
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .feature-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .feature-title {
+    font-size: 14px;
+  }
+  
+  .feature-subtitle {
+    font-size: 12px;
+  }
+}
+</style>
+
+<div class="store-features page-width">
+  <div class="feature-item">
+    <div class="feature-icon">
+      {% if section.settings.feature1_icon %}
+        <img src="{{ section.settings.feature1_icon | img_url: '50x50' }}" alt="Shipping">
+      {% endif %}
+    </div>
+    <div class="feature-text">
+      <div class="feature-title">{{ section.settings.feature1_title }}</div>
+      <div class="feature-subtitle">{{ section.settings.feature1_subtitle }}</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      {% if section.settings.feature2_icon %}
+        <img src="{{ section.settings.feature2_icon | img_url: '50x50' }}" alt="Quality">
+      {% endif %}
+    </div>
+    <div class="feature-text">
+      <div class="feature-title">{{ section.settings.feature2_title }}</div>
+      <div class="feature-subtitle">{{ section.settings.feature2_subtitle }}</div>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      {% if section.settings.feature3_icon %}
+        <img src="{{ section.settings.feature3_icon | img_url: '50x50' }}" alt="Return">
+      {% endif %}
+    </div>
+    <div class="feature-text">
+      <div class="feature-title">{{ section.settings.feature3_title }}</div>
+      <div class="feature-subtitle">{{ section.settings.feature3_subtitle }}</div>
+    </div>
+  </div>
+</div>

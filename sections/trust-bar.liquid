@@ -1,0 +1,180 @@
+{% comment %}
+  sections/trust-bar.liquid
+{% endcomment %}
+
+<section class="trustbar-pp-trust-bar" style="
+  background: {{ section.settings.bg_color }};
+">
+  <div class="trustbar-pp-trust-bar-wrapper page-width">
+    <div class="trustbar-pp-trust-bar-content">
+      <div class="trustbar-pp-trust-bar-track">
+        {% for block in section.blocks %}
+          <div class="trustbar-pp-trust-item" {{ block.shopify_attributes }}>
+            <span class="trustbar-pp-trust-icon">{{ block.settings.icon }}</span>
+            <span class="trustbar-pp-trust-text">{{ block.settings.text }}</span>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="trustbar-pp-trust-bar-track" aria-hidden="true">
+        {% for block in section.blocks %}
+          <div class="trustbar-pp-trust-item">
+            <span class="trustbar-pp-trust-icon">{{ block.settings.icon }}</span>
+            <span class="trustbar-pp-trust-text">{{ block.settings.text }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trustbar-pp-trust-bar {
+    display: block;
+    padding: {{ section.settings.padding_vertical }}px 0;
+    border-top: 1px solid rgba(45, 95, 63, 0.1);
+    border-bottom: 1px solid rgba(45, 95, 63, 0.1);
+  }
+
+  .trustbar-pp-trust-bar-wrapper {
+    overflow: hidden;
+  }
+
+  .trustbar-pp-trust-bar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  .trustbar-pp-trust-bar-track {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-shrink: 0;
+  }
+
+  .trustbar-pp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #2d5f3f;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .trustbar-pp-trust-icon {
+    font-size: 16px;
+  }
+
+  /* Desktop - centered, no animation */
+  @media (min-width: 969px) {
+    .trustbar-pp-trust-bar-track:last-child {
+      display: none;
+    }
+  }
+
+  /* Mobile - infinite scroll animation */
+  @media (max-width: 968px) {
+    .trustbar-pp-trust-bar-content {
+      animation: trustbar-scroll 20s linear infinite;
+      width: max-content;
+    }
+
+    .trustbar-pp-trust-bar-track {
+      gap: 24px;
+      padding-right: 24px;
+    }
+
+    .trustbar-pp-trust-item {
+      font-size: 13px;
+    }
+
+    /* Pause animation on hover */
+    .trustbar-pp-trust-bar:hover .trustbar-pp-trust-bar-content {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes trustbar-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f0f7f3"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "10% donated to verified relief"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "10% donated to verified relief"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "Ships from UK & EU"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "30-day money-back guarantee"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

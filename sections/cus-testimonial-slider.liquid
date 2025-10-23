@@ -1,0 +1,281 @@
+{% schema %}
+{
+  "name": "Testimonial Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "LOVED BY THE COMMUNITY"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial1_img",
+      "label": "Testimonial 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial1_name",
+      "label": "Testimonial 1 Name",
+      "default": "Ismail Hossen"
+    },
+    {
+      "type": "text",
+      "id": "testimonial1_location",
+      "label": "Testimonial 1 Location",
+      "default": "From Bangladesh"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial1_text",
+      "label": "Testimonial 1 Text",
+      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial2_img",
+      "label": "Testimonial 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial2_name",
+      "label": "Testimonial 2 Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "text",
+      "id": "testimonial2_location",
+      "label": "Testimonial 2 Location",
+      "default": "From USA"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial2_text",
+      "label": "Testimonial 2 Text",
+      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial3_img",
+      "label": "Testimonial 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial3_name",
+      "label": "Testimonial 3 Name",
+      "default": "Emily Smith"
+    },
+    {
+      "type": "text",
+      "id": "testimonial3_location",
+      "label": "Testimonial 3 Location",
+      "default": "From Canada"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial3_text",
+      "label": "Testimonial 3 Text",
+      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.testimonial-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: #f9f9f9;
+}
+
+.testimonial-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.testimonial-slider {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+.testimonial {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote-icon {
+  font-size: 30px;
+  color: #ccc;
+}
+
+.stars {
+  color: #FFD700;
+  font-size: 16px;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  color: #555;
+  margin: 15px 0;
+}
+
+.testimonial-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.testimonial-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.testimonial-location {
+  font-size: 13px;
+  color: #777;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background: #333;
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+</style>
+
+<div class="testimonial-section">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="testimonial-slider">
+    <button class="prev-btn" onclick="changeSlide(currentSlide - 1)">❮</button>
+    <div class="testimonial">
+      <span class="quote-icon">❝</span>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">{{ section.settings.testimonial1_text }}</p>
+      <div class="testimonial-info">
+        {% if section.settings.testimonial1_img %}
+          <img src="{{ section.settings.testimonial1_img | img_url: 'small' }}" alt="User">
+        {% endif %}
+        <div>
+          <div class="testimonial-name">{{ section.settings.testimonial1_name }}</div>
+          <div class="testimonial-location">{{ section.settings.testimonial1_location }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <span class="quote-icon">❝</span>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">{{ section.settings.testimonial2_text }}</p>
+      <div class="testimonial-info">
+        {% if section.settings.testimonial2_img %}
+          <img src="{{ section.settings.testimonial2_img | img_url: 'small' }}" alt="User">
+        {% endif %}
+        <div>
+          <div class="testimonial-name">{{ section.settings.testimonial2_name }}</div>
+          <div class="testimonial-location">{{ section.settings.testimonial2_location }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <span class="quote-icon">❝</span>
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">{{ section.settings.testimonial3_text }}</p>
+      <div class="testimonial-info">
+        {% if section.settings.testimonial3_img %}
+          <img src="{{ section.settings.testimonial3_img | img_url: 'small' }}" alt="User">
+        {% endif %}
+        <div>
+          <div class="testimonial-name">{{ section.settings.testimonial3_name }}</div>
+          <div class="testimonial-location">{{ section.settings.testimonial3_location }}</div>
+        </div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="changeSlide(currentSlide + 1)">❯</button>
+  </div>
+  <div class="slider-dots">
+    <div class="dot active" onclick="changeSlide(0)"></div>
+    <div class="dot" onclick="changeSlide(1)"></div>
+    <div class="dot" onclick="changeSlide(2)"></div>
+  </div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.testimonial');
+const dots = document.querySelectorAll('.dot');
+
+function changeSlide(index) {
+  if (index < 0) index = slides.length - 1; // Go to last slide if previous button is clicked at the first slide
+  if (index >= slides.length) index = 0; // Go to first slide if next button is clicked at the last slide
+  
+  slides.forEach((slide, i) => {
+    slide.style.transform = `translateX(${(i - index) * 100}%)`;
+  });
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[index].classList.add('active');
+  currentSlide = index;
+}
+
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  changeSlide(currentSlide);
+}, 5000);
+</script>

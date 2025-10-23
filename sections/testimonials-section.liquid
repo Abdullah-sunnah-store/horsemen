@@ -1,0 +1,276 @@
+{% comment %}
+  sections/testimonials-section.liquid
+{% endcomment %}
+
+<section class="testimonials-pp-testimonials" style="
+  background: {{ section.settings.bg_color }};
+">
+  <div class="testimonials-pp-testimonials-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="testimonials-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="testimonials-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="testimonials-pp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    <div class="testimonials-pp-testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonials-pp-testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonials-pp-testimonial-stars">{{ block.settings.stars }}</div>
+          <p class="testimonials-pp-testimonial-text">{{ block.settings.testimonial }}</p>
+          <div class="testimonials-pp-testimonial-author">
+            <div class="testimonials-pp-author-avatar">{{ block.settings.initial }}</div>
+            <div class="testimonials-pp-author-info">
+              <div class="testimonials-pp-author-name">{{ block.settings.author_name }}</div>
+              <div class="testimonials-pp-author-location">{{ block.settings.location }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-pp-testimonials {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .testimonials-pp-testimonials-wrapper {
+    text-align: center;
+  }
+
+  .testimonials-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .testimonials-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .testimonials-pp-section-subtitle {
+    font-size: 20px;
+    color: #6b6b6b;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .testimonials-pp-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+
+  .testimonials-pp-testimonial-card {
+    background: #f9fdfb;
+    padding: 32px;
+    border-radius: 16px;
+    border: 2px solid #e5f2e9;
+    text-align: left;
+  }
+
+  .testimonials-pp-testimonial-stars {
+    color: #ffa500;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .testimonials-pp-testimonial-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testimonials-pp-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonials-pp-author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2d5f3f 0%, #4a8f5f 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .testimonials-pp-author-info {
+    flex: 1;
+  }
+
+  .testimonials-pp-author-name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .testimonials-pp-author-location {
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+
+  @media (max-width: 968px) {
+    .testimonials-pp-section-title {
+      font-size: 32px;
+    }
+
+    .testimonials-pp-testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Testimonials Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "What Our Community Says"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Palestine on Walls Across 47 Countries"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "3,847 families have already brought Palestine home. Here's what they're saying."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stars",
+          "label": "Star Rating",
+          "default": "★★★★★"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial",
+          "label": "Testimonial Text",
+          "default": "This is the first time my grandson asked me about Khan Younis. The QR code told the story I couldn't find words for. I bought 5 more for my children."
+        },
+        {
+          "type": "text",
+          "id": "initial",
+          "label": "Avatar Initial",
+          "default": "F"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Fatima A."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Dearborn, Michigan"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Section",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "This is the first time my grandson asked me about Khan Younis. The QR code told the story I couldn't find words for. I bought 5 more for my children.",
+            "initial": "F",
+            "author_name": "Fatima A.",
+            "location": "Dearborn, Michigan"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "I'm British-Palestinian. Sometimes I feel disconnected. This calendar keeps me close to my roots every single day. The artwork is museum-quality.",
+            "initial": "Y",
+            "author_name": "Yusuf K.",
+            "location": "London, UK"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "I'm not Palestinian, but I teach Middle Eastern history. This calendar is now in my classroom. Students scan the QR codes daily. Best teaching tool I've found.",
+            "initial": "S",
+            "author_name": "Sarah M.",
+            "location": "Toronto, Canada"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

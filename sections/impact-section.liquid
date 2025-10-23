@@ -1,0 +1,465 @@
+{% comment %}
+  sections/impact-section.liquid
+{% endcomment %}
+
+<section class="impact-pp-impact" style="
+  background: {{ section.settings.bg_color }};
+">
+  <div class="impact-pp-impact-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="impact-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="impact-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="impact-pp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    <div class="impact-pp-impact-grid">
+      <div class="impact-pp-counter-box">
+        <div class="impact-pp-counter-label">{{ section.settings.counter_label }}</div>
+        <div class="impact-pp-counter-value">{{ section.settings.counter_value }}</div>
+        <div class="impact-pp-counter-detail">{{ section.settings.counter_detail }}</div>
+
+        {% if section.settings.show_donation_info %}
+          <div class="impact-pp-donation-info">
+            <strong>{{ section.settings.donated_to_label }}</strong>
+            {{ section.settings.charity_name }}<br>
+            <span class="impact-pp-charity-number">{{ section.settings.charity_number }}</span>
+          </div>
+          {% if section.settings.show_receipts_button %}
+            <a href="{{ section.settings.receipts_link }}" class="impact-pp-btn-secondary impact-pp-btn-full">
+              {{ section.settings.receipts_button_text }}
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="impact-pp-breakdown-box">
+        <h3 class="impact-pp-breakdown-title">{{ section.settings.breakdown_title }}</h3>
+
+        {% for block in section.blocks %}
+          <div class="impact-pp-breakdown-item {% if block.settings.highlight %}impact-pp-highlight{% endif %}" {{ block.shopify_attributes }}>
+            <span class="impact-pp-breakdown-label">{{ block.settings.icon }} {{ block.settings.label }}</span>
+            <span class="impact-pp-breakdown-amount">{{ block.settings.amount }}</span>
+          </div>
+        {% endfor %}
+
+        {% if section.settings.show_disclaimer %}
+          <p class="impact-pp-breakdown-disclaimer">{{ section.settings.disclaimer_text }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .impact-pp-impact {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .impact-pp-impact-wrapper {
+    text-align: center;
+  }
+
+  .impact-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .impact-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .impact-pp-section-subtitle {
+    font-size: 20px;
+    color: #6b6b6b;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .impact-pp-impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .impact-pp-counter-box {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+
+  .impact-pp-counter-label {
+    font-size: 16px;
+    color: #6b6b6b;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .impact-pp-counter-value {
+    font-size: 64px;
+    font-weight: 800;
+    color: #2d5f3f;
+    margin-bottom: 16px;
+  }
+
+  .impact-pp-counter-detail {
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+
+  .impact-pp-donation-info {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e5e5;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .impact-pp-charity-number {
+    font-size: 13px;
+    color: #6b6b6b;
+  }
+
+  .impact-pp-breakdown-box {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    text-align: left;
+  }
+
+  .impact-pp-breakdown-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .impact-pp-breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .impact-pp-breakdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .impact-pp-breakdown-item.impact-pp-highlight {
+    background: #f0f7f3;
+    padding: 16px;
+    margin-top: 16px;
+    border-radius: 8px;
+    border-bottom: none;
+  }
+
+  .impact-pp-breakdown-label {
+    font-size: 16px;
+    color: #4a4a4a;
+  }
+
+  .impact-pp-breakdown-amount {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d5f3f;
+  }
+
+  .impact-pp-breakdown-disclaimer {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #6b6b6b;
+    font-style: italic;
+  }
+
+  .impact-pp-btn-secondary {
+    background: white;
+    color: #2d5f3f;
+    padding: 18px 36px;
+    border: 2px solid #2d5f3f;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .impact-pp-btn-secondary:hover {
+    background: #f0f7f3;
+  }
+
+  .impact-pp-btn-full {
+    width: 100%;
+  }
+
+  @media (max-width: 968px) {
+    .impact-pp-section-title {
+      font-size: 32px;
+    }
+
+    .impact-pp-impact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .impact-pp-counter-value {
+      font-size: 48px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Impact Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f0f7f3"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Radical Transparency"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Where Your £2.80 Goes (We Show Every Penny)"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "No hidden costs. No one gets rich off Palestinian suffering. Here's exactly where every pound goes."
+    },
+    {
+      "type": "header",
+      "content": "Counter Box"
+    },
+    {
+      "type": "text",
+      "id": "counter_label",
+      "label": "Counter Label",
+      "default": "Total Donated So Far"
+    },
+    {
+      "type": "text",
+      "id": "counter_value",
+      "label": "Counter Value",
+      "default": "£38,472"
+    },
+    {
+      "type": "text",
+      "id": "counter_detail",
+      "label": "Counter Detail",
+      "default": "From 3,847 calendars sold"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_donation_info",
+      "label": "Show Donation Info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "donated_to_label",
+      "label": "Donated To Label",
+      "default": "Donated to:"
+    },
+    {
+      "type": "text",
+      "id": "charity_name",
+      "label": "Charity Name",
+      "default": "Medical Aid for Palestinians (MAP)"
+    },
+    {
+      "type": "text",
+      "id": "charity_number",
+      "label": "Charity Number",
+      "default": "UK Charity #: 1045315"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_receipts_button",
+      "label": "Show Receipts Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "receipts_button_text",
+      "label": "Receipts Button Text",
+      "default": "View All Monthly Receipts →"
+    },
+    {
+      "type": "url",
+      "id": "receipts_link",
+      "label": "Receipts Link"
+    },
+    {
+      "type": "header",
+      "content": "Breakdown Box"
+    },
+    {
+      "type": "text",
+      "id": "breakdown_title",
+      "label": "Breakdown Title",
+      "default": "Your £28 Calendar Becomes:"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_disclaimer",
+      "label": "Show Disclaimer",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer_text",
+      "label": "Disclaimer Text",
+      "default": "100% transparency. No hidden costs. No one gets rich off Palestinian suffering."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "breakdown_item",
+      "name": "Breakdown Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "🤲"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Verified relief (MAP)"
+        },
+        {
+          "type": "text",
+          "id": "amount",
+          "label": "Amount",
+          "default": "£2.80"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight This Item",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Impact Section",
+      "blocks": [
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "🤲",
+            "label": "Verified relief (MAP)",
+            "amount": "£2.80"
+          }
+        },
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "🎨",
+            "label": "Artist payments (50%)",
+            "amount": "£12.50"
+          }
+        },
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "📄",
+            "label": "Printing & materials",
+            "amount": "£8.70"
+          }
+        },
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "📦",
+            "label": "Shipping (carbon-neutral)",
+            "amount": "£2.50"
+          }
+        },
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "💳",
+            "label": "Platform fees",
+            "amount": "£1.50"
+          }
+        },
+        {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "💰",
+            "label": "Our profit",
+            "amount": "£0.00",
+            "highlight": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

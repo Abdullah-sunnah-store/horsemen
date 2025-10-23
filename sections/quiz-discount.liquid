@@ -1,0 +1,259 @@
+<div class="quiz-discount-container">
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.description }}</p>
+
+  <div id="quiz-container">
+    <div id="quiz-questions">
+      {% comment %}Questions will be dynamically inserted here{% endcomment %}
+    </div>
+    
+    <button id="submit-quiz" class="btn" disabled>
+      {{ section.settings.submit_button_text }}
+    </button>
+    
+    <div id="quiz-result" class="quiz-result"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quiz Discount",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Quiz Title",
+      "default": "Quiz Challenge"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Quiz Description",
+      "default": "Answer two questions correctly and win a discount!"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Text",
+      "default": "Submit Answers"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const questions = [
+    {
+      id: 1,
+      question: "What is the capital of France?",
+      options: ["London", "Paris", "Berlin", "Rome"],
+      correctAnswer: "Paris"
+    },
+    {
+      id: 2,
+      question: "What is 2 + 2?",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: "4"
+    },
+    // Add more questions (total 30 as previously discussed)
+    {
+      id: 30,
+      question: "What is the main language spoken in Brazil?",
+      options: ["Spanish", "English", "Portuguese", "Italian"],
+      correctAnswer: "Portuguese"
+    }
+  ];
+
+  function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-questions');
+    quizContainer.innerHTML = ''; // Clear previous questions
+    
+    // Select 2 random questions
+    const selectedQuestions = getRandomQuestions(questions, 2);
+    
+    selectedQuestions.forEach(question => {
+      const questionElement = document.createElement('div');
+      questionElement.classList.add('quiz-question');
+      questionElement.dataset.questionId = question.id;
+      
+      const questionTitle = document.createElement('h3');
+      questionTitle.textContent = question.question;
+      questionElement.appendChild(questionTitle);
+      
+      const optionsContainer = document.createElement('div');
+      optionsContainer.classList.add('quiz-options');
+      
+      question.options.forEach(option => {
+        const optionButton = document.createElement('button');
+        optionButton.textContent = option;
+        optionButton.classList.add('quiz-option');
+        optionButton.dataset.option = option;
+        
+        optionButton.addEventListener('click', () => {
+          // Remove selected from other options in this question
+          questionElement.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.classList.remove('selected');
+          });
+          optionButton.classList.add('selected');
+          
+          checkQuizState();
+        });
+        
+        optionsContainer.appendChild(optionButton);
+      });
+      
+      questionElement.appendChild(optionsContainer);
+      quizContainer.appendChild(questionElement);
+    });
+  }
+
+  function getRandomQuestions(allQuestions, count) {
+    const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  function checkQuizState() {
+    const submitBtn = document.getElementById('submit-quiz');
+    const selectedQuestions = document.querySelectorAll('.quiz-question');
+    const selectedAnswers = document.querySelectorAll('.quiz-option.selected');
+    
+    submitBtn.disabled = selectedAnswers.length !== selectedQuestions.length;
+  }
+
+  function submitQuiz() {
+    const questions = document.querySelectorAll('.quiz-question');
+    const resultContainer = document.getElementById('quiz-result');
+    const submitBtn = document.getElementById('submit-quiz');
+    
+    let correctCount = 0;
+    
+    questions.forEach(question => {
+      const selectedOption = question.querySelector('.quiz-option.selected');
+      const questionData = questions.find(q => q.dataset.questionId === question.dataset.questionId);
+      
+      if (selectedOption && selectedOption.dataset.option === questionData.correctAnswer) {
+        correctCount++;
+      }
+    });
+    
+    let discount = 0;
+    let message = '';
+    
+    switch(correctCount) {
+      case 2:
+        discount = 10;
+        message = `Congratulations! You've earned a ${discount}% discount!`;
+        break;
+      case 1:
+        discount = 7;
+        message = `Good try! You've earned a ${discount}% discount!`;
+        break;
+      default:
+        message = "Sorry, no discount this time. Try again!";
+    }
+    
+    resultContainer.innerHTML = `
+      <div class="quiz-result-message ${discount > 0 ? 'success' : 'failure'}">
+        <p>${message}</p>
+        ${discount > 0 ? `<p>Use code: QUIZ${discount}OFF at checkout</p>` : ''}
+      </div>
+    `;
+    
+    submitBtn.textContent = 'Try Again';
+    submitBtn.removeEventListener('click', submitQuiz);
+    submitBtn.addEventListener('click', resetQuiz);
+  }
+
+  function resetQuiz() {
+    const resultContainer = document.getElementById('quiz-result');
+    const submitBtn = document.getElementById('submit-quiz');
+    
+    resultContainer.innerHTML = '';
+    submitBtn.textContent = 'Submit Answers';
+    submitBtn.disabled = true;
+    
+    submitBtn.removeEventListener('click', resetQuiz);
+    submitBtn.addEventListener('click', submitQuiz);
+    
+    renderQuiz();
+  }
+
+  // Initial setup
+  const submitBtn = document.getElementById('submit-quiz');
+  submitBtn.addEventListener('click', submitQuiz);
+  
+  // Render initial quiz
+  renderQuiz();
+});
+</script>
+
+<style>
+.quiz-discount-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.quiz-questions {
+  display: grid;
+  gap: 20px;
+}
+
+.quiz-question h3 {
+  margin-bottom: 10px;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quiz-option {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+  background-color: #e0e0e0;
+}
+
+.quiz-option.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.quiz-result-message {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.quiz-result-message.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.quiz-result-message.failure {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+#submit-quiz {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#submit-quiz:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+</style>

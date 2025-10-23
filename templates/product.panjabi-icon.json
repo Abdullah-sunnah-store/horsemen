@@ -1,0 +1,429 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "product_addons_6VCLTr": {
+          "type": "product-addons",
+          "settings": {
+            "product_addon": "{{ product.metafields.custom.product_addons.value.products.value }}",
+            "addon_bg": "#ffffff",
+            "checkbox_active_color": "#000000",
+            "checkbox_size": 20,
+            "image_size": 64,
+            "image_size_mb": 56,
+            "image_type": "5",
+            "title_size": 20,
+            "title_size_mb": 16,
+            "font_weight": "bold",
+            "price_size": 14,
+            "price_size_mb": 12,
+            "free_gift_info": "👉Claim Your Free Gift  Box🎁",
+            "title_color": "#000000",
+            "price_color": "#000000",
+            "price_opacity": 0.7
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "icon_with_text_B8zttg": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "heart",
+            "image_1": "shopify://shop_images/Frame.svg",
+            "heading_1": "Elegant Embroidery",
+            "icon_2": "return",
+            "image_2": "shopify://shop_images/Frame_1.svg",
+            "heading_2": "Premium Fabric",
+            "icon_3": "truck",
+            "image_3": "shopify://shop_images/Frame_12.svg",
+            "heading_3": "All-Day Comfort"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_emjQqE": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Material",
+            "icon": "question_mark",
+            "content": "<p>Cover: FSC Certified paper from Great Britain, Leafs: 220 pages 80 GSM lined paper  </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_78rbGD": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "<p>The order will be shipped out to you within 5-7 business days. If you’ve<br/> placed more than one order, your items may arrive in different <br/>packages.</p>",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "product_addons_6VCLTr",
+        "buy_buttons",
+        "icon_with_text_B8zttg",
+        "description",
+        "collapsible_tab_emjQqE",
+        "collapsible_tab_78rbGD",
+        "share"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "main_product_v2_PpzHr7": {
+      "type": "main-product-v2",
+      "blocks": {
+        "title_yYxzMg": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_AfaWKx": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_JEAyTn": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "popup_J6bKbP": {
+          "type": "popup",
+          "settings": {
+            "text": "Size Chart",
+            "page": "{{ product.metafields.custom.size_chart.value }}"
+          }
+        },
+        "quantity_selector_YRKb3D": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "product_addons_MMffrX": {
+          "type": "product-addons",
+          "disabled": true,
+          "settings": {
+            "product_addon": "{{ product.metafields.custom.product_addons.value.products.value }}",
+            "addon_bg": "#ffffff",
+            "checkbox_active_color": "#000000",
+            "checkbox_size": 20,
+            "image_size": 64,
+            "image_size_mb": 56,
+            "image_type": "5",
+            "title_size": 20,
+            "title_size_mb": 12,
+            "font_weight": "bold",
+            "price_size": 20,
+            "price_size_mb": 10,
+            "free_gift_info": "👉 Claim free gift",
+            "title_color": "#000000",
+            "price_color": "#b69d74",
+            "price_opacity": 0.9
+          }
+        },
+        "cus_product_addons_aN9N8T": {
+          "type": "cus-product-addons",
+          "disabled": true,
+          "source": "{{ metaobjects.product_addon[\"all-collection\"] }}",
+          "settings": {
+            "product_addon": "{{ metaobjects.product_addon[\"all-collection\"].products.value }}",
+            "addon_bg": "#ffffff",
+            "checkbox_active_color": "#000000",
+            "checkbox_size": 20,
+            "image_size": 64,
+            "image_size_mb": 56,
+            "image_type": "5",
+            "title_size": 14,
+            "title_size_mb": 12,
+            "font_weight": "bold",
+            "price_size": 12,
+            "price_size_mb": 10,
+            "free_gift_info": "{{ metaobjects.product_addon[\"all-collection\"].name.value }}",
+            "title_color": "#000000",
+            "price_color": "#000000",
+            "price_opacity": 0.7
+          }
+        },
+        "upsell_nNhWJa": {
+          "type": "Upsell",
+          "disabled": true,
+          "settings": {}
+        },
+        "gift_message_LynMQF": {
+          "type": "gift-message",
+          "disabled": true,
+          "settings": {}
+        },
+        "cus_product_addons_bAFe9b": {
+          "type": "cus-product-addons",
+          "disabled": true,
+          "settings": {
+            "product_addon": [
+              "cigar-oud",
+              "leather-oud",
+              "royal-oud"
+            ],
+            "addon_bg": "#ffffff",
+            "checkbox_active_color": "#000000",
+            "checkbox_size": 20,
+            "image_size": 100,
+            "image_size_mb": 56,
+            "image_type": "5",
+            "title_size": 16,
+            "title_size_mb": 12,
+            "font_weight": "medium",
+            "price_size": 16,
+            "price_size_mb": 14,
+            "free_gift_info": "👉 Claim free gift",
+            "title_color": "#000000",
+            "price_color": "#121212",
+            "price_opacity": 0.7
+          }
+        },
+        "inventory_Tz494q": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "buy_buttons_rLnAgJ": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "video_with_text_UhRKkM": {
+          "type": "video-with-text",
+          "settings": {
+            "heading_video_text": "See the Grace, Feel the Comfort",
+            "video_url_1": "https://cdn.shopify.com/videos/c/o/v/25da3fb7dca1460dbc59f31cc0a93f60.mp4",
+            "video_title_1": "",
+            "video_url_2": "https://cdn.shopify.com/videos/c/o/v/964335adb13740d194e77cced289abd9.mp4",
+            "video_title_2": "",
+            "video_thumbnail_2": "shopify://shop_images/Timeline_1_01_05_33_08.jpg",
+            "video_url_3": "https://cdn.shopify.com/videos/c/o/v/5dd4f0dbb7ba47b28ef69e709fc451ed.mp4",
+            "video_title_3": "",
+            "video_thumbnail_3": "shopify://shop_images/Timeline_1_01_23_30_01.jpg",
+            "video_url_4": "https://cdn.shopify.com/videos/c/o/v/82017350b76f435299c17fdffee63902.mp4",
+            "video_title_4": "",
+            "video_thumbnail_4": "shopify://shop_images/Timeline_1_01_30_46_20.jpg"
+          }
+        },
+        "payment_image_icon_XrTLUD": {
+          "type": "payment-image-icon",
+          "disabled": true,
+          "settings": {
+            "payment_image_icon": "shopify://shop_images/payment.png"
+          }
+        },
+        "text_gVMgiw": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Text block",
+            "text_style": "body"
+          }
+        },
+        "icon_with_text_AahEqa": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "heart",
+            "image_1": "shopify://shop_images/Layer_1.svg",
+            "heading_1": "Impeccable Finishing",
+            "icon_2": "return",
+            "image_2": "shopify://shop_images/Frame_13.svg",
+            "heading_2": "Ultra-fine Bamboo Fabric",
+            "icon_3": "truck",
+            "image_3": "shopify://shop_images/Frame_12.svg",
+            "heading_3": "All-Day Comfort"
+          }
+        },
+        "shipping_return_Jwtpz9": {
+          "type": "shipping-return",
+          "settings": {
+            "shipping_icon": "shopify://shop_images/Frame_8b53ff4d-bee0-4277-9720-07e7afe962e6.svg",
+            "return_icon": "shopify://shop_images/Frame_1_d350e98e-b89b-4590-93b8-d29a06e27e7f.svg"
+          }
+        },
+        "pickup_availability_zzB8Th": {
+          "type": "pickup-availability",
+          "settings": {}
+        },
+        "collapsible_tab_DMr9Ar": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "<p>Shipping in 3-5 business days<br/>Easy return</p>",
+            "page": ""
+          }
+        },
+        "description_X7EgVk": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_N3mfRJ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Wash Care: ",
+            "icon": "washing",
+            "content": "<ul><li>Dry clean only.</li><li>Do not bleach.</li><li>Steam iron recommended.</li><li>Iron inside out with low to medium heat.</li><li>Do not iron over label or the buttons.</li></ul>",
+            "page": ""
+          }
+        },
+        "share_mPEiKq": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "product_social_share_KMEWBK": {
+          "type": "product-social-share",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_yYxzMg",
+        "price_AfaWKx",
+        "variant_picker_JEAyTn",
+        "popup_J6bKbP",
+        "quantity_selector_YRKb3D",
+        "product_addons_MMffrX",
+        "cus_product_addons_aN9N8T",
+        "upsell_nNhWJa",
+        "gift_message_LynMQF",
+        "cus_product_addons_bAFe9b",
+        "inventory_Tz494q",
+        "buy_buttons_rLnAgJ",
+        "video_with_text_UhRKkM",
+        "payment_image_icon_XrTLUD",
+        "text_gVMgiw",
+        "icon_with_text_AahEqa",
+        "shipping_return_Jwtpz9",
+        "pickup_availability_zzB8Th",
+        "collapsible_tab_DMr9Ar",
+        "description_X7EgVk",
+        "collapsible_tab_N3mfRJ",
+        "share_mPEiKq",
+        "product_social_share_KMEWBK"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_product_v2_PpzHr7",
+    "related-products"
+  ]
+}

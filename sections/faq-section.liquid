@@ -1,0 +1,375 @@
+{% comment %}
+  sections/faq-section.liquid
+{% endcomment %}
+
+<section class="faq-pp-faq" style="
+  background: {{ section.settings.bg_color }};
+">
+  <div class="faq-pp-faq-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="faq-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="faq-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="faq-pp-faq-container">
+      {% assign current_category = "" %}
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          {% if current_category != "" %}
+            </div> <!-- Close previous category -->
+          {% endif %}
+          <div class="faq-pp-faq-category">
+            <h3 class="faq-pp-faq-category-title">{{ block.settings.icon }} {{ block.settings.category_title }}</h3>
+          {% assign current_category = block.settings.category_title %}
+        {% elsif block.type == 'faq_item' %}
+          <div class="faq-pp-faq-item" {{ block.shopify_attributes }}>
+            <div class="faq-pp-faq-question" onclick="this.parentElement.classList.toggle('faq-pp-active')">
+              <span>{{ block.settings.question }}</span>
+              <span class="faq-pp-faq-toggle">▼</span>
+            </div>
+            <div class="faq-pp-faq-answer">{{ block.settings.answer }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% if current_category != "" %}
+        </div> <!-- Close last category -->
+      {% endif %}
+    </div>
+
+    {% if section.settings.show_contact_cta %}
+      <div class="faq-pp-faq-contact">
+        <p class="faq-pp-contact-question">{{ section.settings.contact_question }}</p>
+        <p class="faq-pp-contact-info">{{ section.settings.contact_info }}</p>
+        {% if section.settings.show_cta_button %}
+          <a href="{{ section.settings.cta_link }}" class="faq-pp-btn-primary faq-pp-btn-large">
+            {{ section.settings.cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .faq-pp-faq {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .faq-pp-faq-wrapper {
+    text-align: center;
+  }
+
+  .faq-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .faq-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    line-height: 1.2;
+  }
+
+  .faq-pp-faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .faq-pp-faq-category {
+    margin-bottom: 48px;
+  }
+
+  .faq-pp-faq-category-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #2d5f3f;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .faq-pp-faq-item {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 2px solid #e5f2e9;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .faq-pp-faq-item:hover {
+    border-color: #2d5f3f;
+  }
+
+  .faq-pp-faq-question {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-pp-faq-toggle {
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .faq-pp-faq-item.faq-pp-active .faq-pp-faq-toggle {
+    transform: rotate(180deg);
+  }
+
+  .faq-pp-faq-answer {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4a4a4a;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+
+  .faq-pp-faq-item.faq-pp-active .faq-pp-faq-answer {
+    max-height: 500px;
+    margin-top: 12px;
+  }
+
+  .faq-pp-faq-contact {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .faq-pp-contact-question {
+    font-size: 18px;
+    color: #4a4a4a;
+    margin-bottom: 24px;
+  }
+
+  .faq-pp-contact-info {
+    font-size: 16px;
+    color: #6b6b6b;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .faq-pp-btn-primary {
+    background: #2d5f3f;
+    color: white;
+    padding: 18px 36px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(45, 95, 63, 0.2);
+  }
+
+  .faq-pp-btn-primary:hover {
+    background: #234a32;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(45, 95, 63, 0.3);
+  }
+
+  .faq-pp-btn-large {
+    font-size: 20px;
+    padding: 20px 48px;
+  }
+
+  @media (max-width: 968px) {
+    .faq-pp-section-title {
+      font-size: 32px;
+    }
+
+    .faq-pp-faq-question {
+      font-size: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9fdfb"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "Questions Answered"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Everything You're Wondering"
+    },
+    {
+      "type": "header",
+      "content": "Contact CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_cta",
+      "label": "Show Contact CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_question",
+      "label": "Contact Question",
+      "default": "Still have questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_info",
+      "label": "Contact Info",
+      "default": "Email: support@projectpal.com\nResponse time: 24 hours or less"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_button",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "I'm Ready → Reserve My Calendar"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "FAQ Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "💰"
+        },
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category Title",
+          "default": "About Money & Donations"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Where does the 10% actually go?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Medical Aid for Palestinians (MAP), UK registered charity #1045315. We donate monthly and publish receipts here. You can verify every donation on their website."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "icon": "💰",
+            "category_title": "About Money & Donations"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where does the 10% actually go?",
+            "answer": "Medical Aid for Palestinians (MAP), UK registered charity #1045315. We donate monthly and publish receipts here. You can verify every donation on their website."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why isn't it 100% to charity?",
+            "answer": "Because we pay artists FIRST (50% of production cost), use premium materials, and charge zero profit. This isn't a charity—it's a sustainable way to support Palestinian artists AND causes."
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "icon": "🎨",
+            "category_title": "About The Artists"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are the artists really from Gaza?",
+            "answer": "Yes. All 12 artists currently live in or are originally from Gaza, Khan Younis, Rafah, and Deir al-Balah. You can read each artist's story on their month's page."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

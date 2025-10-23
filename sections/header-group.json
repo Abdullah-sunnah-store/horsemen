@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_tG3kUF": {
+          "type": "announcement",
+          "settings": {
+            "text": "This is an online market Recite the dua for entering. Shop in time 7 days returns | Free Shipping | Free Palestine",
+            "link": ""
+          }
+        },
+        "announcement-bar-0": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "This is an online market Recite the dua for entering. Shop in time 30 days returns | Free Shipping | Free Palistine",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_tG3kUF",
+        "announcement-bar-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-4",
+        "show_line_separator": true,
+        "show_social": false,
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "cus_announcement_bar_design_arR3Lt": {
+      "type": "cus-announcement-bar-design",
+      "disabled": true,
+      "settings": {}
+    },
+    "marqueetext_bWnmU8": {
+      "type": "marqueetext",
+      "disabled": true,
+      "settings": {
+        "marqueetext": "<p>This is an online market Recite the dua for entering.</p><p> <strong>Shop in time</strong> 30 days returns | Free Shipping | Free Palistine</p>"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "menu": "project-pal-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_customer_avatar": false,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "enable_cta_button": true,
+        "cta_button_text": "Pre-order Now",
+        "cta_button_url": "shopify://collections/all",
+        "cta_button_style": "secondary"
+      }
+    },
+    "cus_search_qmrLWi": {
+      "type": "cus-search",
+      "disabled": true,
+      "settings": {
+        "marqueetext": "<p>You are in Online Market. Recite the dua for entering the market: Laa ilaaha illallaahu wahdahu laa shareeka lahu, lahul-mulku wa lahul-hamd, yuhyee wa yumeet, wa huwa hayyun laa yamoot, biyadihil-khayr, wa huwa alaa kulli shayin qadeer.</p>"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "cus_announcement_bar_design_arR3Lt",
+    "marqueetext_bWnmU8",
+    "header",
+    "cus_search_qmrLWi"
+  ]
+}

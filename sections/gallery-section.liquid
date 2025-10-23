@@ -1,0 +1,500 @@
+{% comment %}
+  sections/gallery-section.liquid
+{% endcomment %}
+
+<section class="gallery-pp-gallery" style="
+  background: linear-gradient(180deg, {{ section.settings.bg_color_1 }} 0%, {{ section.settings.bg_color_2 }} 100%);
+">
+  <div class="gallery-pp-gallery-wrapper page-width">
+    {% if section.settings.section_label != blank %}
+      <div class="gallery-pp-section-label">{{ section.settings.section_label }}</div>
+    {% endif %}
+
+    {% if section.settings.section_title != blank %}
+      <h2 class="gallery-pp-section-title">{{ section.settings.section_title }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_subtitle != blank %}
+      <p class="gallery-pp-section-subtitle">{{ section.settings.section_subtitle }}</p>
+    {% endif %}
+
+    <div class="gallery-pp-gallery-scroll">
+      {% for block in section.blocks %}
+        <div class="gallery-pp-month-card" {{ block.shopify_attributes }}>
+          <div class="gallery-pp-month-image" style="background: linear-gradient(135deg, {{ block.settings.bg_color_1 }} 0%, {{ block.settings.bg_color_2 }} 100%);">
+            {% if block.settings.month_image != blank %}
+              {{ block.settings.month_image | image_url: width: 600 | image_tag: class: 'gallery-pp-month-img' }}
+            {% else %}
+              <div class="gallery-pp-month-emoji">{{ block.settings.emoji }}<br>{{ block.settings.month_code }}</div>
+            {% endif %}
+          </div>
+          <div class="gallery-pp-month-content">
+            <h3 class="gallery-pp-month-title">{{ block.settings.title }}</h3>
+            <p class="gallery-pp-month-story">{{ block.settings.story }}</p>
+            <div class="gallery-pp-month-meta">
+              {% if block.settings.artist != blank %}
+                <div><strong>Artist:</strong> {{ block.settings.artist }}</div>
+              {% endif %}
+              {% if block.settings.symbol != blank %}
+                <div><strong>Symbol:</strong> {{ block.settings.symbol }}</div>
+              {% endif %}
+              {% if block.settings.qr_story != blank %}
+                <div><strong>QR Story:</strong> {{ block.settings.qr_story }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_specs %}
+      <div class="gallery-pp-specs-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'spec' %}
+            <div class="gallery-pp-spec-item" {{ block.shopify_attributes }}>
+              <span class="gallery-pp-spec-icon">{{ block.settings.icon }}</span>
+              <div>
+                <strong>{{ block.settings.title }}</strong><br>
+                <span class="gallery-pp-spec-detail">{{ block.settings.detail }}</span>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_cta %}
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="{{ section.settings.cta_link }}" class="gallery-pp-btn-primary gallery-pp-btn-large">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .gallery-pp-gallery {
+    display: block;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .gallery-pp-gallery-wrapper {
+    text-align: center;
+  }
+
+  .gallery-pp-section-label {
+    color: #2d5f3f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .gallery-pp-section-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .gallery-pp-section-subtitle {
+    font-size: 20px;
+    color: #6b6b6b;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .gallery-pp-gallery-scroll {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-pp-gallery-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .gallery-pp-gallery-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .gallery-pp-gallery-scroll::-webkit-scrollbar-thumb {
+    background: #2d5f3f;
+    border-radius: 10px;
+  }
+
+  .gallery-pp-month-card {
+    min-width: 350px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    scroll-snap-align: start;
+    transition: transform 0.3s;
+  }
+
+  .gallery-pp-month-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .gallery-pp-month-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-pp-month-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-pp-month-emoji {
+    font-size: 48px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .gallery-pp-month-content {
+    padding: 24px;
+    text-align: left;
+  }
+
+  .gallery-pp-month-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #2d5f3f;
+  }
+
+  .gallery-pp-month-story {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+  }
+
+  .gallery-pp-month-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+
+  .gallery-pp-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 60px auto 40px;
+  }
+
+  .gallery-pp-spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+  }
+
+  .gallery-pp-spec-icon {
+    font-size: 24px;
+    color: #2d5f3f;
+    flex-shrink: 0;
+  }
+
+  .gallery-pp-spec-detail {
+    color: #6b6b6b;
+    font-size: 14px;
+  }
+
+  .gallery-pp-btn-primary {
+    background: #2d5f3f;
+    color: white;
+    padding: 18px 36px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(45, 95, 63, 0.2);
+  }
+
+  .gallery-pp-btn-primary:hover {
+    background: #234a32;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(45, 95, 63, 0.3);
+  }
+
+  .gallery-pp-btn-large {
+    font-size: 20px;
+    padding: 20px 48px;
+  }
+
+  @media (max-width: 968px) {
+    .gallery-pp-section-title {
+      font-size: 32px;
+    }
+
+    .gallery-pp-month-card {
+      min-width: 300px;
+    }
+
+    .gallery-pp-specs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Gallery Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background Color 1",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background Color 2",
+      "default": "#f9fdfb"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label",
+      "default": "What's Inside"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "A Year of Palestine—Month by Month"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subtitle",
+      "label": "Section Subtitle",
+      "default": "12 original artworks from Gaza artists. 12 stories of resilience. 12 reasons to stay connected every single day."
+    },
+    {
+      "type": "header",
+      "content": "Specifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specs",
+      "label": "Show Specifications Grid",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Choose Your Edition →"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "month",
+      "name": "Month Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "month_image",
+          "label": "Month Image"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji (if no image)",
+          "default": "📅"
+        },
+        {
+          "type": "text",
+          "id": "month_code",
+          "label": "Month Code",
+          "default": "JAN"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_1",
+          "label": "Background Color 1",
+          "default": "#e5f2e9"
+        },
+        {
+          "type": "color",
+          "id": "bg_color_2",
+          "label": "Background Color 2",
+          "default": "#c9e4d3"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "January: Hope"
+        },
+        {
+          "type": "textarea",
+          "id": "story",
+          "label": "Story",
+          "default": "One day, you will play in our garden again, a mother whispered under the starlit sky. Even in darkness, her voice carried hope..."
+        },
+        {
+          "type": "text",
+          "id": "artist",
+          "label": "Artist",
+          "default": "Layla Ahmad, Gaza City"
+        },
+        {
+          "type": "text",
+          "id": "symbol",
+          "label": "Symbol",
+          "default": "Starlit sky over Gaza"
+        },
+        {
+          "type": "text",
+          "id": "qr_story",
+          "label": "QR Story Duration",
+          "default": "90 seconds"
+        }
+      ]
+    },
+    {
+      "type": "spec",
+      "name": "Specification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "📄"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Premium 300gsm Paper"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detail",
+          "default": "Archival quality, matte finish"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Section",
+      "blocks": [
+        {
+          "type": "month",
+          "settings": {
+            "emoji": "📅",
+            "month_code": "JAN",
+            "title": "January: Hope",
+            "story": "One day, you will play in our garden again, a mother whispered under the starlit sky. Even in darkness, her voice carried hope...",
+            "artist": "Layla Ahmad, Gaza City",
+            "symbol": "Starlit sky over Gaza",
+            "qr_story": "90 seconds"
+          }
+        },
+        {
+          "type": "month",
+          "settings": {
+            "emoji": "💝",
+            "month_code": "FEB",
+            "title": "February: Love",
+            "story": "She was the soul of my soul, whispered Grandfather Khaled. His love transcended loss, becoming eternal...",
+            "artist": "Mohammed Suleiman",
+            "symbol": "Intergenerational love",
+            "qr_story": "75 seconds"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "📄",
+            "title": "Premium 300gsm Paper",
+            "detail": "Archival quality, matte finish"
+          }
+        },
+        {
+          "type": "spec",
+          "settings": {
+            "icon": "📏",
+            "title": "A3 Wall Size",
+            "detail": "297 x 420mm, perfect display"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

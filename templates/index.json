@@ -1,0 +1,514 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "trust_bar_knCnLj": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust_item_MW7eAF": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "10% donated to verified relief"
+          }
+        },
+        "trust_item_qqp3Vx": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "Ships from UK & EU"
+          }
+        },
+        "trust_item_CtygE7": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "✓",
+            "text": "30-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_MW7eAF",
+        "trust_item_qqp3Vx",
+        "trust_item_CtygE7"
+      ],
+      "name": "Trust Bar",
+      "settings": {
+        "bg_color": "#f0f7f3",
+        "padding_vertical": 12
+      }
+    },
+    "hero_section_rXnU7n": {
+      "type": "hero-section",
+      "name": "Hero Section",
+      "settings": {
+        "bg_color_1": "#ffffff",
+        "bg_color_2": "#f9fdfb",
+        "padding_top": 60,
+        "padding_bottom": 80,
+        "pre_headline": "For the ones who left, but never let go",
+        "arabic_text": "فلسطين",
+        "english_text": "Palestine",
+        "accent_text": "Lives Here Now",
+        "subhead": "<p><strong>12 months. 12 artists from Gaza.</strong><br/>12 ways to keep home alive in your daily life—<br/>while funding real relief.</p>",
+        "star_rating": "★★★★★",
+        "rating_text": "4.9/5 from 3,847 families",
+        "ship_date": "Ships December 2025",
+        "primary_cta_text": "Reserve Your Calendar — £28",
+        "primary_cta_link": "shopify://collections/all",
+        "secondary_cta_text": "See What's Inside",
+        "secondary_cta_link": "shopify://collections/all",
+        "show_urgency": true,
+        "urgency_icon": "🔥",
+        "urgency_text": "3,847 of 50,000 sold • Early price ends in 4 days",
+        "hero_image": "shopify://shop_images/Screenshot_9.png",
+        "placeholder_text": "Calendar on Diaspora Family Wall\nNext to photos of Palestine, keys, olive branch",
+        "badge_text": "Limited to 50,000 worldwide"
+      }
+    },
+    "comparison_section_DjfUHQ": {
+      "type": "comparison-section",
+      "blocks": {
+        "wrong_item_pxdUej": {
+          "type": "wrong_item",
+          "settings": {
+            "text": "\"Awareness\" products that do nothing"
+          }
+        },
+        "wrong_item_eHYnAh": {
+          "type": "wrong_item",
+          "settings": {
+            "text": "Designs by people who've never been there"
+          }
+        },
+        "wrong_item_8hmqTw": {
+          "type": "wrong_item",
+          "settings": {
+            "text": "Vague \"proceeds donated\" with no receipts"
+          }
+        },
+        "right_item_y7TeEt": {
+          "type": "right_item",
+          "settings": {
+            "text": "12 artists from Gaza, paid BEFORE printing"
+          }
+        },
+        "right_item_ddk6Wz": {
+          "type": "right_item",
+          "settings": {
+            "text": "10% donated monthly—receipts published here →"
+          }
+        },
+        "right_item_fEyMf4": {
+          "type": "right_item",
+          "settings": {
+            "text": "Premium quality you'll actually display"
+          }
+        }
+      },
+      "block_order": [
+        "wrong_item_pxdUej",
+        "wrong_item_eHYnAh",
+        "wrong_item_8hmqTw",
+        "right_item_y7TeEt",
+        "right_item_ddk6Wz",
+        "right_item_fEyMf4"
+      ],
+      "name": "Comparison Section",
+      "settings": {
+        "bg_color": "#f9fdfb",
+        "border_color": "#e5f2e9",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "Why We're Different",
+        "section_title": "Not Another \"Awareness\" Product",
+        "section_subtitle": "We know you've been burned before. Here's exactly why Project Pal is different.",
+        "wrong_title": "❌ Most \"Awareness\" Products",
+        "right_title": "✓ Project Pal Promise",
+        "show_cta": true,
+        "cta_quote": "Made by diaspora, for diaspora. No middlemen. No exploitation. Just art, dignity, and action.",
+        "cta_text": "See This Month's Donation Receipt →",
+        "cta_link": ""
+      }
+    },
+    "bundles_section_nwPqGa": {
+      "type": "bundles-section",
+      "blocks": {
+        "bundle_kDKJ6c": {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Standard Edition",
+            "quantity": "1 Calendar",
+            "price": "£28",
+            "savings": "",
+            "is_popular": false,
+            "popular_text": "MOST POPULAR",
+            "feature_1": "12 original artworks from Gaza",
+            "feature_2": "Premium 300gsm paper",
+            "feature_3": "QR codes to 12 stories",
+            "feature_4": "10% donated to MAP",
+            "use_case": "Perfect for: Your own home or office",
+            "product": "",
+            "button_text": "Add to Cart"
+          }
+        },
+        "bundle_Hy9hCR": {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "The Family Set",
+            "quantity": "3 Calendars",
+            "price": "£75",
+            "savings": "Save £9 (12% off)",
+            "is_popular": true,
+            "popular_text": "MOST POPULAR",
+            "feature_1": "Everything in Standard",
+            "feature_2": "Free: 3 kufiya bookmarks",
+            "feature_3": "Split shipping option available",
+            "feature_4": "Perfect for gifting family",
+            "use_case": "Perfect for: One for you, two for parents/siblings. Most popular for Eid gifts.",
+            "product": "",
+            "button_text": "Add to Cart"
+          }
+        },
+        "bundle_F9hhcA": {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Collector's Edition",
+            "quantity": "1 Calendar + Gold Foil",
+            "price": "£38",
+            "savings": "",
+            "is_popular": false,
+            "popular_text": "MOST POPULAR",
+            "feature_1": "Everything in Standard",
+            "feature_2": "Gold foil accents on titles",
+            "feature_3": "Numbered certificate (Limited to 5,000)",
+            "feature_4": "Premium gift box",
+            "use_case": "Perfect for: Collectors & those who want the premium experience",
+            "product": "",
+            "button_text": "Add to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_kDKJ6c",
+        "bundle_Hy9hCR",
+        "bundle_F9hhcA"
+      ],
+      "name": "Bundles Section",
+      "settings": {
+        "bg_color_1": "#f9fdfb",
+        "bg_color_2": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "Give Palestine. Keep Palestine.",
+        "section_title": "Choose Your Edition",
+        "section_subtitle": "In our culture, we share what we love. Make this your gift this year.",
+        "show_guarantee": true,
+        "guarantee_title": "30-Day Money-Back Guarantee",
+        "guarantee_text": "If you're not absolutely in love with your calendar within 30 days, we'll refund you. No questions asked. You keep the calendar.",
+        "guarantee_details": "Ships December 2025 • UK/EU/US shipping available • Track your order online"
+      }
+    },
+    "testimonials_section_eTH8PC": {
+      "type": "testimonials-section",
+      "blocks": {
+        "testimonial_G9GWJz": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "★★★★★",
+            "testimonial": "This is the first time my grandson asked me about Khan Younis. The QR code told the story I couldn't find words for. I bought 5 more for my children.",
+            "initial": "F",
+            "author_name": "Fatima A.",
+            "location": "Dearborn, Michigan"
+          }
+        },
+        "testimonial_3GgjYX": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "★★★★★",
+            "testimonial": "I'm British-Palestinian. Sometimes I feel disconnected. This calendar keeps me close to my roots every single day. The artwork is museum-quality.",
+            "initial": "Y",
+            "author_name": "Yusuf K.",
+            "location": "London, UK"
+          }
+        },
+        "testimonial_bDktjL": {
+          "type": "testimonial",
+          "settings": {
+            "stars": "★★★★★",
+            "testimonial": "I'm not Palestinian, but I teach Middle Eastern history. This calendar is now in my classroom. Students scan the QR codes daily. Best teaching tool I've found.",
+            "initial": "S",
+            "author_name": "Sarah M.",
+            "location": "Toronto, Canada"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_G9GWJz",
+        "testimonial_3GgjYX",
+        "testimonial_bDktjL"
+      ],
+      "name": "Testimonials Section",
+      "settings": {
+        "bg_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "What Our Community Says",
+        "section_title": "Palestine on Walls Across 47 Countries",
+        "section_subtitle": "3,847 families have already brought Palestine home. Here's what they're saying."
+      }
+    },
+    "gallery_section_kzKThe": {
+      "type": "gallery-section",
+      "blocks": {
+        "month_NEH3FW": {
+          "type": "month",
+          "settings": {
+            "month_image": "shopify://shop_images/Screenshot_10.png",
+            "emoji": "📅",
+            "month_code": "JAN",
+            "bg_color_1": "#e5f2e9",
+            "bg_color_2": "#c9e4d3",
+            "title": "January: Hope",
+            "story": "One day, you will play in our garden again, a mother whispered under the starlit sky. Even in darkness, her voice carried hope...",
+            "artist": "Layla Ahmad, Gaza City",
+            "symbol": "Starlit sky over Gaza",
+            "qr_story": "90 seconds"
+          }
+        },
+        "month_gxLxQU": {
+          "type": "month",
+          "settings": {
+            "month_image": "shopify://shop_images/Screenshot_9.png",
+            "emoji": "💝",
+            "month_code": "FEB",
+            "bg_color_1": "#e5f2e9",
+            "bg_color_2": "#c9e4d3",
+            "title": "February: Love",
+            "story": "She was the soul of my soul, whispered Grandfather Khaled. His love transcended loss, becoming eternal...",
+            "artist": "Mohammed Suleiman",
+            "symbol": "Intergenerational love",
+            "qr_story": "75 seconds"
+          }
+        },
+        "month_zgqUGh": {
+          "type": "month",
+          "settings": {
+            "month_image": "shopify://shop_images/Screenshot_10.png",
+            "emoji": "📅",
+            "month_code": "Mar",
+            "bg_color_1": "#e5f2e9",
+            "bg_color_2": "#c9e4d3",
+            "title": "March: Hope",
+            "story": "One day, you will play in our garden again, a mother whispered under the starlit sky. Even in darkness, her voice carried hope...",
+            "artist": "Layla Ahmad, Gaza City",
+            "symbol": "Starlit sky over Gaza",
+            "qr_story": "90 seconds"
+          }
+        },
+        "month_3iNyyb": {
+          "type": "month",
+          "settings": {
+            "month_image": "shopify://shop_images/Screenshot_9.png",
+            "emoji": "📅",
+            "month_code": "Apr",
+            "bg_color_1": "#e5f2e9",
+            "bg_color_2": "#c9e4d3",
+            "title": "April: Hope",
+            "story": "One day, you will play in our garden again, a mother whispered under the starlit sky. Even in darkness, her voice carried hope...",
+            "artist": "Layla Ahmad, Gaza City",
+            "symbol": "Starlit sky over Gaza",
+            "qr_story": "90 seconds"
+          }
+        }
+      },
+      "block_order": [
+        "month_NEH3FW",
+        "month_gxLxQU",
+        "month_zgqUGh",
+        "month_3iNyyb"
+      ],
+      "name": "Gallery Section",
+      "settings": {
+        "bg_color_1": "#ffffff",
+        "bg_color_2": "#f9fdfb",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "What's Inside",
+        "section_title": "A Year of Palestine—Month by Month",
+        "section_subtitle": "12 original artworks from Gaza artists. 12 stories of resilience. 12 reasons to stay connected every single day.",
+        "show_specs": true,
+        "show_cta": true,
+        "cta_text": "Choose Your Edition →",
+        "cta_link": ""
+      }
+    },
+    "impact_section_wEy4hQ": {
+      "type": "impact-section",
+      "blocks": {
+        "breakdown_item_tVXVrp": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "🤲",
+            "label": "Verified relief (MAP)",
+            "amount": "£2.80",
+            "highlight": false
+          }
+        },
+        "breakdown_item_QeNbBA": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "🎨",
+            "label": "Artist payments (50%)",
+            "amount": "£12.50",
+            "highlight": false
+          }
+        },
+        "breakdown_item_8inAWd": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "📄",
+            "label": "Printing & materials",
+            "amount": "£8.70",
+            "highlight": false
+          }
+        },
+        "breakdown_item_kfkRX9": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "📦",
+            "label": "Shipping (carbon-neutral)",
+            "amount": "£2.50",
+            "highlight": false
+          }
+        },
+        "breakdown_item_hkmhGR": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "💳",
+            "label": "Platform fees",
+            "amount": "£1.50",
+            "highlight": false
+          }
+        },
+        "breakdown_item_Ay9UQk": {
+          "type": "breakdown_item",
+          "settings": {
+            "icon": "💰",
+            "label": "Our profit",
+            "amount": "£0.00",
+            "highlight": true
+          }
+        }
+      },
+      "block_order": [
+        "breakdown_item_tVXVrp",
+        "breakdown_item_QeNbBA",
+        "breakdown_item_8inAWd",
+        "breakdown_item_kfkRX9",
+        "breakdown_item_hkmhGR",
+        "breakdown_item_Ay9UQk"
+      ],
+      "name": "Impact Section",
+      "settings": {
+        "bg_color": "#f0f7f3",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "Radical Transparency",
+        "section_title": "Where Your £2.80 Goes (We Show Every Penny)",
+        "section_subtitle": "No hidden costs. No one gets rich off Palestinian suffering. Here's exactly where every pound goes.",
+        "counter_label": "Total Donated So Far",
+        "counter_value": "£38,472",
+        "counter_detail": "From 3,847 calendars sold",
+        "show_donation_info": true,
+        "donated_to_label": "Donated to:",
+        "charity_name": "Medical Aid for Palestinians (MAP)",
+        "charity_number": "UK Charity #: 1045315",
+        "show_receipts_button": true,
+        "receipts_button_text": "View All Monthly Receipts →",
+        "receipts_link": "",
+        "breakdown_title": "Your £28 Calendar Becomes:",
+        "show_disclaimer": true,
+        "disclaimer_text": "100% transparency. No hidden costs. No one gets rich off Palestinian suffering."
+      }
+    },
+    "faq_section_LaYGwt": {
+      "type": "faq-section",
+      "blocks": {
+        "category_XH6RyY": {
+          "type": "category",
+          "settings": {
+            "icon": "💰",
+            "category_title": "About Money & Donations"
+          }
+        },
+        "faq_item_4cwpUN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where does the 10% actually go?",
+            "answer": "Medical Aid for Palestinians (MAP), UK registered charity #1045315. We donate monthly and publish receipts here. You can verify every donation on their website."
+          }
+        },
+        "faq_item_LFX8er": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Why isn't it 100% to charity?",
+            "answer": "Because we pay artists FIRST (50% of production cost), use premium materials, and charge zero profit. This isn't a charity—it's a sustainable way to support Palestinian artists AND causes."
+          }
+        },
+        "category_hmx9xz": {
+          "type": "category",
+          "settings": {
+            "icon": "🎨",
+            "category_title": "About The Artists"
+          }
+        },
+        "faq_item_CtaLz3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are the artists really from Gaza?",
+            "answer": "Yes. All 12 artists currently live in or are originally from Gaza, Khan Younis, Rafah, and Deir al-Balah. You can read each artist's story on their month's page."
+          }
+        }
+      },
+      "block_order": [
+        "category_XH6RyY",
+        "faq_item_4cwpUN",
+        "faq_item_LFX8er",
+        "category_hmx9xz",
+        "faq_item_CtaLz3"
+      ],
+      "name": "FAQ Section",
+      "settings": {
+        "bg_color": "#f9fdfb",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "section_label": "Questions Answered",
+        "section_title": "Everything You're Wondering",
+        "show_contact_cta": true,
+        "contact_question": "Still have questions?",
+        "contact_info": "Email: support@projectpal.com\nResponse time: 24 hours or less",
+        "show_cta_button": true,
+        "cta_text": "I'm Ready → Reserve My Calendar",
+        "cta_link": ""
+      }
+    }
+  },
+  "order": [
+    "trust_bar_knCnLj",
+    "hero_section_rXnU7n",
+    "comparison_section_DjfUHQ",
+    "bundles_section_nwPqGa",
+    "testimonials_section_eTH8PC",
+    "gallery_section_kzKThe",
+    "impact_section_wEy4hQ",
+    "faq_section_LaYGwt"
+  ]
+}

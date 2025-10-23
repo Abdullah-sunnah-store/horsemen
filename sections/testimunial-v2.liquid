@@ -1,0 +1,180 @@
+{% schema %}
+{
+  "name": "Testimonials-v2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Loved by the Community"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "customer_image",
+          "label": "Customer Image"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "text",
+          "id": "customer_location",
+          "label": "Customer Location",
+          "default": "From USA"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials-v2",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.testimonials-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: #fff;
+}
+.testimonials-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+}
+.testimonial {
+  display: inline-block;
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  scroll-snap-align: center;
+}
+.testimonial img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.testimonial-stars {
+  color: #f5c518;
+}
+.testimonial-text {
+  font-size: 14px;
+  color: #555;
+}
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.slider-controls button {
+  background: #ccc;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .testimonials-container {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+}
+</style>
+
+<div class="testimonials-section">
+  <h2>{{ section.settings.section_title }}</h2>
+  <div class="testimonials-container">
+    {% for block in section.blocks %}
+      <div class="testimonial">
+        <div class="testimonial-header">
+          {% if block.settings.customer_image %}
+            <img src="{{ block.settings.customer_image | img_url: '50x50' }}" alt="{{ block.settings.customer_name }}">
+          {% endif %}
+          <div>
+            <strong>{{ block.settings.customer_name }}</strong>
+            <br>
+            <small>{{ block.settings.customer_location }}</small>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          {% for i in (1..block.settings.rating) %}
+            ⭐
+          {% endfor %}
+        </div>
+        <p class="testimonial-text">{{ block.settings.testimonial_text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="slider-controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">➡</button>
+  </div>
+</div>
+
+<script>
+let index = 0;
+function showSlide(i) {
+  const container = document.querySelector('.testimonials-container');
+  const slides = document.querySelectorAll('.testimonial');
+  if (i >= slides.length) index = 0;
+  if (i < 0) index = slides.length - 1;
+  container.scrollTo({ left: slides[index].offsetLeft, behavior: 'smooth' });
+}
+function nextSlide() {
+  index++;
+  showSlide(index);
+}
+function prevSlide() {
+  index--;
+  showSlide(index);
+}
+</script>
