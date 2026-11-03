@@ -1078,8 +1078,8 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 
-                {%- when ‘upsell’ -%}
-                {%- render ‘upsell’-%}
+                {%- when upsell -%}
+                {%- render upsell -%}
               
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
@@ -3635,3 +3635,16 @@ document.addEventListener("DOMContentLoaded", function() {
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when ‘upsell’ -%}"
+  to: "{%- when upsell -%}"
+  position: 69457..69476
+- from: "{%- render ‘upsell’-%}"
+  to: "{%- render upsell -%}"
+  position: 69493..69514
+{% endcomment %}
